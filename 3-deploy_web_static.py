@@ -10,7 +10,6 @@ from os.path import exists
 from os import getenv, environ
 from datetime import datetime
 
-
 env.hosts = ['54.236.48.22', '54.85.37.215']
 env.user = 'ubuntu'
 env.key_filename = '/home/~/.ssh/id_rsa'
@@ -32,7 +31,7 @@ def do_pack():
         return None
 
 
-    def do_deploy(archive_path):
+def do_deploy(archive_path):
     """Deploys the web static to the server"""
 
     if not exists(archive_path):
