@@ -11,6 +11,7 @@ from fabric.api import *
 
 env.hosts = ['54.236.48.22', '54.85.37.215']
 
+
 @task
 def do_deploy(archive_path):
     if not os.path.exists(archive_path):
@@ -27,7 +28,8 @@ def do_deploy(archive_path):
             conn.put(archive_path, remote_archive_path)
 
             conn.run(f"sudo mkdir -p {destination_dir}")
-            conn.run(f"sudo tar -xzf {remote_archive_path} -C {destinaation_dir} --strip-components=1")
+            conn.run(f"sudo tar -xzf {remote_archive_path} -C
+                     {destinaation_dir} --strip-components=1")
             conn.run(f"sudo rm {remote_archive_path}")
 
             conn.run(f"sudo rm -rf /data/web_static/current")
