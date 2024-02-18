@@ -42,11 +42,10 @@ def py(text):
     return "Python {}".format(text)
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    '''checks if a number is an integer'''
-    if n.isdigit():
-        return "{} is a number".format(n)
+    '''The number page'''
+    return "{} is a number".format(n)
 
 
 if __name__ == '__main__':
