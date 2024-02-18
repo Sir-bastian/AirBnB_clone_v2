@@ -12,6 +12,7 @@ import shlex
 import os
 from importlib import import_module
 
+
 class FileStorage:
     """This class serializes instances to a JSON file and
     deserializes JSON file to instances
@@ -54,7 +55,6 @@ class FileStorage:
             {obj.to_dict()['__class__'] + '.' + obj.id: obj}
         )
 
-
     def save(self):
         """Saves storage dictionary to file"""
         with open(self.__file_path, 'w') as file:
@@ -62,7 +62,6 @@ class FileStorage:
             for key, val in self.__objects.items():
                 temp[key] = val.to_dict()
             json.dump(temp, file)
-
 
     def reload(self):
         """Loads storage dictionary from file"""
@@ -74,21 +73,19 @@ class FileStorage:
                 for key, val in temp.items():
                     self.all()[key] = classes[val['__class__']](**val)
 
-
     def delete(self, obj=None):
-<<<<<<< HEAD
+
         """ delete an existing element
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects(key, None)
-=======
-         """Removes an object from the storage dictionary"""
+
+        """Removes an object from the storage dictionary"""
         if obj is not None:
             obj_key = obj.to_dict()['__class__'] + '.' + obj.id
             if obj_key in self.__objects.keys():
                 del self.__objects[obj_key]
->>>>>>> 9f414d4fa133d9532364b6a3f493b68cc5d6c2f9
 
     def close(self):
         """ calls reload() and closes the storage engine
