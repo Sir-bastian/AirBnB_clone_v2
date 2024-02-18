@@ -74,13 +74,6 @@ class FileStorage:
                     self.all()[key] = classes[val['__class__']](**val)
 
     def delete(self, obj=None):
-
-        """ delete an existing element
-        """
-        if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del self.__objects(key, None)
-
         """Removes an object from the storage dictionary"""
         if obj is not None:
             obj_key = obj.to_dict()['__class__'] + '.' + obj.id
